@@ -3,12 +3,10 @@ import React from 'react'
 
 export default function LoginForm() {
     return (
-        <div>
-            <Form>
-            <Input placeholder="Email"/>
-            <Input placeholder="Password"/>
-            </Form>
-            
-        </div>
-    )
+      <div>
+        <Input placeholder="Email" />
+        <br />
+        <Input placeholder="Password" type="password" />
+      </div>
+    );
 }
