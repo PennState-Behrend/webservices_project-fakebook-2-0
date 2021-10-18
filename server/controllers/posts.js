@@ -1,3 +1,7 @@
 export const getPost = (req, res) =>{
-    res.send("This works")
+    res.send("Get Post")
+}
+
+export const makePost = (req,res) =>{
+    res.send("Post Created!")
 }
