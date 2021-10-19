@@ -14,7 +14,7 @@ import { typography } from "@mui/system";
 import FakebookLogo from "../../images/fakebooklogo.svg";
 import smallLogo from "../../images/smallLogo.png";
 
-import LoginForm from "./LoginForm";
+import SignUp from "./Signup";
 import { InputAdornment } from "@mui/material";
 import { useTheme, useMediaQuery } from "@material-ui/core";
 
@@ -23,7 +23,7 @@ export default function Login() {
   const showTextLogo = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <div backgroundColor="#F8F0E3">
+    <div>
       <Grid container style={{ minHeight: "100%" }}>
         {showTextLogo && (
           <Grid
@@ -62,8 +62,8 @@ export default function Login() {
             style={{
               display: "flex",
               flexDirection: "column",
-              maxWidth: showTextLogo ? 350 : 200,
-              minWidth: showTextLogo ? 350 : 200,
+              maxWidth: showTextLogo ? 400 : 300,
+              minWidth: showTextLogo ? 400 : 300,
             }}
           >
             <Grid container justifyContent="center">
@@ -72,8 +72,10 @@ export default function Login() {
             <TextField
               label="Email"
               margin="normal"
+              placeholder="Enter Email"
               type="email"
-              variant="standard"
+              size="large"
+              variant="filled"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -86,7 +88,8 @@ export default function Login() {
               label="Password"
               margin="normal"
               type="password"
-              variant="standard"
+              placeholder="Enter Password"
+              variant="filled"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -99,10 +102,19 @@ export default function Login() {
             <Button color="primary" variant="contained">
               Log In
             </Button>
-            <div style={{ height: 20 }} />
-            <Button color="success" variant="contained">
-              Create New Account
-            </Button>
+            <div style={{ height: 30 }} />
+
+            <div style={{ height: "200px", width: "100%" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <SignUp />
+              </div>
+            </div>
           </div>
         </Grid>
         <div />
