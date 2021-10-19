@@ -20,7 +20,18 @@ export default function App() {
       {/* <Form />
 
       <Feed /> */}
-      {user ? <NavBar /> : <Login />}
+      {user ? (
+        <>
+          <NavBar />
+
+          <Switch>
+            <Route path="/" exact component={Feed} />
+            <Route path="/post" exact component={Form} />
+          </Switch>
+        </>
+      ) : (
+        <Login />
+      )}
     </Router>
   );
 }
