@@ -74,7 +74,13 @@ const Post = ({
       </div>
 
       <div className="postImage">
-        <img src={image} alt="" width="100%" height="650" maxWidth="80%" />
+        <img
+          src={image}
+          alt=""
+          width="100%"
+          maxHeight="auto"
+          style={{ objectFit: "contain" }}
+        />
       </div>
 
       <div className="postOptions">
