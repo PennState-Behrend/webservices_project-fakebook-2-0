@@ -16,37 +16,36 @@ import smallLogo from "../../images/smallLogo.png";
 
 import LoginForm from "./LoginForm";
 import { InputAdornment } from "@mui/material";
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  //color: theme.palette.text.secondary,
-}));
+import { useTheme, useMediaQuery } from "@material-ui/core";
 
 export default function Login() {
+  const theme = useTheme();
+  const showTextLogo = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <div backgroundColor="#F8F0E3">
       <Grid container style={{ minHeight: "100%" }}>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          alignItems="right"
-          justify="right"
-          justify="space-between"
-        >
-          <img
-            src={FakebookLogo}
-            style={{
-              width: "80%",
-              maxWidth: "80%",
-              objectFit: "cover",
-              marginTop: "30%",
-            }}
-            alt="Logo"
-          />
-        </Grid>
+        {showTextLogo && (
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            alignItems="right"
+            justify="right"
+            justify="space-between"
+          >
+            <img
+              src={FakebookLogo}
+              style={{
+                width: "80%",
+                maxWidth: "80%",
+                objectFit: "cover",
+                marginTop: "30%",
+              }}
+              alt="Logo"
+            />
+          </Grid>
+        )}
         <Grid
           container
           item
@@ -63,8 +62,8 @@ export default function Login() {
             style={{
               display: "flex",
               flexDirection: "column",
-              maxWidth: 350,
-              minWidth: 350,
+              maxWidth: showTextLogo ? 350 : 200,
+              minWidth: showTextLogo ? 350 : 200,
             }}
           >
             <Grid container justifyContent="center">
