@@ -40,6 +40,7 @@ export default function Feed() {
               likeCount={post.likeCount}
               commentCount={post.commentCount}
               image={post.selectedFile}
+              tags={post.tags}
             />
           ))}
         </Grid>

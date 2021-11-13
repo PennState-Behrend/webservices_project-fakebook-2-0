@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { deepOrange, deepPurple } from "@mui/material/colors";
+import TagChip from "./TagChips.js";
 
 import Moment from "react-moment";
 
@@ -26,6 +27,7 @@ const Post = ({
   message,
   commentCount,
   likeCount,
+  tags,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -63,7 +65,10 @@ const Post = ({
             <MenuItem onClick={handleClose}>Delete</MenuItem>
           </Menu>
         </div>
-        <Avatar sx={{ bgcolor: "#FFFFFF" }} style={{ marginRight: 5 }}>
+        <Avatar
+          sx={{ bgcolor: "#FFFFFF" }}
+          style={{ marginRight: 5, backgroundColor: "blueviolet" }}
+        >
           {username[0].toUpperCase()}
         </Avatar>
 
@@ -73,10 +78,20 @@ const Post = ({
             <Moment fromNow>{timestamp}</Moment>
           </p>
         </div>
+        <div className="postTopInfo">
+          <TagChip tags={tags} />
+        </div>
       </div>
 
       <div className="postBottom">
-        <p style={{ marginTop: -20, fontSize: 20 }}>{message}</p>
+        <p
+          style={{
+            marginTop: -20,
+            fontSize: 20,
+          }}
+        >
+          {message}
+        </p>
       </div>
 
       <div className="postImage">

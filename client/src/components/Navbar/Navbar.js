@@ -19,6 +19,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { Avatar } from "@material-ui/core";
 
 const drawerWidth = 220;
 
@@ -163,7 +164,12 @@ class MiniDrawer extends React.Component {
                 onClick={this.handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <Avatar
+                  sx={{ bgcolor: "#FFFFFF" }}
+                  style={{ backgroundColor: "red" }}
+                >
+                  {"Y"}
+                </Avatar>
               </IconButton>
               <Menu
                 id="menu-appbar"
