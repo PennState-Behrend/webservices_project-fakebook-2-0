@@ -3,6 +3,8 @@ import "./Post.css";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Moment from "react-moment";
+
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 // Icons
@@ -59,10 +61,13 @@ const Post = ({
             <MenuItem onClick={handleClose}>Delete</MenuItem>
           </Menu>
         </div>
-        <AccountCircle />
+        <AccountCircle style={{ fontSize: 50 }} />
 
         <div className="postTopInfo">
-          <h3>{username}</h3>
+          <h2>{username}</h2>
+          <p>
+            <Moment fromNow>{timestamp}</Moment>
+          </p>
           {/* <p>time</p> */}
           {/* <p>{new Date(timestamp?.toDate()).toUTCString()}</p> */}
           {/* <p>{new Date(timestamp?.toDate()).toUTCString()}</p> */}
@@ -70,7 +75,7 @@ const Post = ({
       </div>
 
       <div className="postBottom">
-        <p>{message}</p>
+        <p style={{ marginTop: -20, fontSize: 20 }}>{message}</p>
       </div>
 
       <div className="postImage">
