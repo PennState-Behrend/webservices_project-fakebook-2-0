@@ -3,6 +3,8 @@ import "./Post.css";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { deepOrange, deepPurple } from "@mui/material/colors";
+
 import Moment from "react-moment";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -61,16 +63,15 @@ const Post = ({
             <MenuItem onClick={handleClose}>Delete</MenuItem>
           </Menu>
         </div>
-        <AccountCircle style={{ fontSize: 50 }} />
+        <Avatar sx={{ bgcolor: "#FFFFFF" }} style={{ marginRight: 5 }}>
+          {username[0].toUpperCase()}
+        </Avatar>
 
         <div className="postTopInfo">
           <h2>{username}</h2>
           <p>
             <Moment fromNow>{timestamp}</Moment>
           </p>
-          {/* <p>time</p> */}
-          {/* <p>{new Date(timestamp?.toDate()).toUTCString()}</p> */}
-          {/* <p>{new Date(timestamp?.toDate()).toUTCString()}</p> */}
         </div>
       </div>
 
@@ -97,11 +98,6 @@ const Post = ({
         <div className="postOption">
           <ChatBubbleOutline />
           <p>{commentCount} Comment</p>
-        </div>
-
-        <div className="postOption">
-          <NearMe />
-          <p>Share</p>
         </div>
       </div>
     </div>
