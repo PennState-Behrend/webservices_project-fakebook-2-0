@@ -2,7 +2,7 @@ import PostMessage from "../models/postMessage.js";
 
 export const getPost = async (req, res) => {
   try {
-    const postMessages = await PostMessage.find();
+    const postMessages = await PostMessage.find().sort({ _id: -1 });
 
     res.status(200).json(postMessages);
   } catch (error) {

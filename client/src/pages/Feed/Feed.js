@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Post from "./Post";
+import PostForm from "../../components/Form/Form";
 import { styled } from "@mui/material/styles";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -20,6 +21,12 @@ export default function Feed() {
 
   return (
     <Box sx={{ flexGrow: 1, paddingTop: "-50vh" }}>
+      <Grid container spacing={2}>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6}>
+          <PostForm />
+        </Grid>
+      </Grid>
       <Grid container spacing={2}>
         <Grid item xs={3}></Grid>
         <Grid item xs={6}>
