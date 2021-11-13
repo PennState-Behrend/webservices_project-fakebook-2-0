@@ -25,7 +25,7 @@ export default function TagChips({ tags }) {
       component="ul"
     >
       {tags?.map((data) => {
-        if (data == "") return <div></div>;
+        if (data == "") return <div key={data}></div>;
         return (
           <ListItem key={data}>
             <Chip

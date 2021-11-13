@@ -6,6 +6,7 @@ import Feed from "./pages/Feed/Feed";
 import Form from "./components/Form/Form";
 import NavBar from "./components/Navbar/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Timeline from "./pages/Timeline/Timeline";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default function App() {
 
           <Switch>
             <Route path="/" exact component={Feed} />
-            <Route path="/post" exact component={Form} />
+            <Route path="/timeline/:id" component={Timeline} />
           </Switch>
         </>
       ) : (

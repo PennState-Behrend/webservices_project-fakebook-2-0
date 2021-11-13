@@ -5,6 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { deepOrange, deepPurple } from "@mui/material/colors";
 import TagChip from "./TagChips.js";
+import { Link } from "react-router-dom";
 
 import Moment from "react-moment";
 
@@ -73,7 +74,9 @@ const Post = ({
         </Avatar>
 
         <div className="postTopInfo">
-          <h2>{username}</h2>
+          <Link to="/timeline/thisisatestuserid">
+            <h2>{username}</h2>
+          </Link>
           <p>
             <Moment fromNow>{timestamp}</Moment>
           </p>
