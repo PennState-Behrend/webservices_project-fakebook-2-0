@@ -9,7 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import SignUpForm from "./SignupForm";
 
-export default function SignUp() {
+export default function SignUp({ onChangeHandler, onHandleSubmit, formData }) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -40,7 +40,11 @@ export default function SignUp() {
           {"Creating a new Account"}
         </DialogTitle>
         <DialogContent>
-          <SignUpForm />
+          <SignUpForm
+            onHandleChange={onChangeHandler}
+            onHandleSubmit={onHandleSubmit}
+            formData={formData}
+          />
         </DialogContent>
         <DialogActions>
           <Button
@@ -52,7 +56,7 @@ export default function SignUp() {
             cancel
           </Button>
           <Button
-            onClick={handleClose}
+            onClick={onHandleSubmit}
             autoFocus
             variant="contained"
             type="submit"

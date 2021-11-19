@@ -21,13 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUpForm = () => {
+const SignUpForm = ({ onHandleChange, formData }) => {
   const classes = useStyles();
-  // create state variables for each input
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   return (
     <form className={classes.root}>
@@ -35,31 +30,44 @@ const SignUpForm = () => {
         label="First Name"
         variant="filled"
         required
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
+        value={formData.firstName}
+        name="firstName"
+        onChange={onHandleChange}
       />
       <TextField
         label="Last Name"
         variant="filled"
         required
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
+        value={formData.lastName}
+        name="lastName"
+        onChange={onHandleChange}
       />
       <TextField
         label="Email"
         variant="filled"
         type="email"
+        value={formData.email}
         required
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        name="email"
+        onChange={onHandleChange}
       />
       <TextField
         label="Password"
         variant="filled"
         type="password"
+        value={formData.password}
         required
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        name="password"
+        onChange={onHandleChange}
+      />
+      <TextField
+        label="Confirm Password"
+        variant="filled"
+        type="password"
+        value={formData.confirmPassword}
+        required
+        name="confirmPassword"
+        onChange={onHandleChange}
       />
     </form>
   );

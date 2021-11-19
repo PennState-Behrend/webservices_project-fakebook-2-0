@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import React, { useState } from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -18,9 +18,31 @@ import SignUp from "./Signup";
 import { InputAdornment } from "@mui/material";
 import { useTheme, useMediaQuery } from "@material-ui/core";
 
+const initalState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
 export default function Login() {
   const theme = useTheme();
   const showTextLogo = useMediaQuery(theme.breakpoints.up("md"));
+
+  const [formData, setFormData] = useState(initalState);
+
+  const handleLogin = () => {
+    console.log(formData);
+  };
+
+  const handleSignup = () => {
+    console.log(formData);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
     <div>
@@ -71,6 +93,8 @@ export default function Login() {
             </Grid>
             <TextField
               label="Email"
+              name="email"
+              onChange={handleChange}
               margin="normal"
               placeholder="Enter Email"
               type="email"
@@ -88,6 +112,8 @@ export default function Login() {
               label="Password"
               margin="normal"
               type="password"
+              onChange={handleChange}
+              name="password"
               placeholder="Enter Password"
               variant="filled"
               InputProps={{
@@ -99,7 +125,7 @@ export default function Login() {
               }}
             />
             <div style={{ height: 20 }} />
-            <Button color="primary" variant="contained">
+            <Button color="primary" variant="contained" onClick={handleLogin}>
               Log In
             </Button>
             <div style={{ height: 30 }} />
@@ -112,7 +138,11 @@ export default function Login() {
                   alignItems: "center",
                 }}
               >
-                <SignUp />
+                <SignUp
+                  onChangeHandler={handleChange}
+                  onHandleSubmit={handleSignup}
+                  formData={formData}
+                />
               </div>
             </div>
           </div>
