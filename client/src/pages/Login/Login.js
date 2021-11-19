@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -17,6 +15,10 @@ import smallLogo from "../../images/smallLogo.png";
 import SignUp from "./Signup";
 import { InputAdornment } from "@mui/material";
 import { useTheme, useMediaQuery } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+import { signin, signup } from "../../actions/auth";
 
 const initalState = {
   firstName: "",
@@ -31,13 +33,17 @@ export default function Login() {
   const showTextLogo = useMediaQuery(theme.breakpoints.up("md"));
 
   const [formData, setFormData] = useState(initalState);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleLogin = () => {
     console.log(formData);
+    dispatch(signin(formData, history));
   };
 
   const handleSignup = () => {
     console.log(formData);
+    dispatch(signup(formData, history));
   };
 
   const handleChange = (e) => {
