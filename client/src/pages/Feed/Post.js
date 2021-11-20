@@ -5,11 +5,14 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { deepOrange, deepPurple } from "@mui/material/colors";
 import TagChip from "./TagChips.js";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Moment from "react-moment";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+
+import { deletePost } from "../../actions/posts";
 
 // Icons
 import { Avatar } from "@material-ui/core";
@@ -40,6 +43,9 @@ const Post = ({
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const dispatch = useDispatch();
+
   return (
     <div className="post">
       <div className="postTop">
@@ -72,7 +78,14 @@ const Post = ({
             >
               Edit
             </MenuItem>
-            <MenuItem onClick={handleClose}>Delete</MenuItem>
+            <MenuItem
+              onClick={() => {
+                dispatch(deletePost(id));
+                handleClose();
+              }}
+            >
+              Delete
+            </MenuItem>
           </Menu>
         </div>
         <Avatar

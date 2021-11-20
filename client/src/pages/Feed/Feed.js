@@ -20,8 +20,14 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Feed() {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
+
   const [currentId, setCurrentId] = useState(null);
   // console.log(posts);
+
+  const getMorePost = () => {
+    dispatch(getPosts());
+  };
+
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
@@ -31,7 +37,11 @@ export default function Feed() {
       <Grid container spacing={2}>
         <Grid item xs={3}></Grid>
         <Grid item xs={6}>
-          <PostForm setCurrentId={setCurrentId} currentId={currentId} />
+          <PostForm
+            getMorePost={getMorePost}
+            setCurrentId={setCurrentId}
+            currentId={currentId}
+          />
         </Grid>
       </Grid>
       <Grid container spacing={2}>

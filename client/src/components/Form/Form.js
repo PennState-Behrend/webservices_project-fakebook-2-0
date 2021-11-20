@@ -6,7 +6,7 @@ import FileBase from "react-file-base64";
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = ({ currentId, setCurrentId, getMorePost }) => {
   const [postData, setPostData] = useState({
     creator: "",
     body: "",
@@ -44,6 +44,7 @@ const Form = ({ currentId, setCurrentId }) => {
       dispatch(createPost(postData));
     }
     clear();
+    getMorePost();
   };
 
   return (
