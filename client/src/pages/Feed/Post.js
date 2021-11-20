@@ -12,7 +12,7 @@ import Moment from "react-moment";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { deletePost } from "../../actions/posts";
+import { deletePost, likePost } from "../../actions/posts";
 
 // Icons
 import { Avatar } from "@material-ui/core";
@@ -92,7 +92,7 @@ const Post = ({
           sx={{ bgcolor: "#FFFFFF" }}
           style={{ marginRight: 5, backgroundColor: "blueviolet" }}
         >
-          {username[0].toUpperCase()}
+          {"YUBA".toUpperCase()}
         </Avatar>
 
         <div className="postTopInfo">
@@ -130,7 +130,12 @@ const Post = ({
       </div>
 
       <div className="postOptions">
-        <div className="postOption">
+        <div
+          className="postOption"
+          onClick={() => {
+            dispatch(likePost(id));
+          }}
+        >
           <ThumbUp />
           <p>{likeCount} Like</p>
         </div>
