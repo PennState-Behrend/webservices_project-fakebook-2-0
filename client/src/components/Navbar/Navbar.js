@@ -20,6 +20,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { Avatar } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 220;
 
@@ -149,15 +150,17 @@ class MiniDrawer extends React.Component {
                 }}
               />
             </IconButton> */}
-            <Typography
-              variant="h6"
-              style={{ marginLeft: 30 }}
-              color="inherit"
+            <Link
+              to="/"
+              style={{ textDecoration: "none" }}
               className={classes.grow}
-              noWrap
+              underline="none"
+              variant="h2"
+              color="inherit"
+              style={{ marginLeft: 30, fontSize: 50 }}
             >
               Fa<strong>k</strong>ebook
-            </Typography>
+            </Link>
             <div>
               <IconButton
                 aria-owns={open ? "menu-appbar" : undefined}

@@ -11,3 +11,12 @@ html {
     margin: 0;
     padding: 0;
 }
+a:-webkit-any-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:-webkit-any-link:hover {
+    text-decoration: none;
+    text-shadow: 1px 1px #FF0000;
+}
