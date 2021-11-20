@@ -135,7 +135,7 @@ class MiniDrawer extends React.Component {
           })}
         >
           <Toolbar disableGutters={true}>
-            <IconButton
+            {/* <IconButton
               color="inherit"
               aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
@@ -148,9 +148,10 @@ class MiniDrawer extends React.Component {
                     : classes.menuButtonIconClosed,
                 }}
               />
-            </IconButton>
+            </IconButton> */}
             <Typography
               variant="h6"
+              style={{ marginLeft: 30 }}
               color="inherit"
               className={classes.grow}
               noWrap
@@ -168,7 +169,7 @@ class MiniDrawer extends React.Component {
                   sx={{ bgcolor: "#FFFFFF" }}
                   style={{ backgroundColor: "red" }}
                 >
-                  {"Y"}
+                  {this.props.user[0].toUpperCase()}
                 </Avatar>
               </IconButton>
               <Menu
@@ -192,7 +193,7 @@ class MiniDrawer extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
-        <Drawer
+        {/* <Drawer
           variant="permanent"
           className={classNames(classes.drawer, {
             [classes.drawerOpen]: this.state.open,
@@ -217,18 +218,7 @@ class MiniDrawer extends React.Component {
               </ListItem>
             ))}
           </List>
-          <Divider />
-          <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
+        </Drawer> */}
         <main className={classes.content}>
           <div className={classes.toolbar} />
         </main>

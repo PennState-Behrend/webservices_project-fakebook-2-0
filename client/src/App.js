@@ -8,6 +8,7 @@ import NavBar from "./components/Navbar/Navbar";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import Timeline from "./pages/Timeline/Timeline";
 import decode from "jwt-decode";
+import TokenChecker from "./components/Navbar/TokenChecker";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -43,9 +44,10 @@ export default function App() {
       {/* <Form />
 
       <Feed /> */}
+
       {user ? (
         <>
-          <NavBar signOut={logout} />
+          <NavBar signOut={logout} user={user?.result?.name} />
 
           <Switch>
             <Route path="/" exact component={Feed} />
