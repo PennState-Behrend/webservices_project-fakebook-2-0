@@ -10,7 +10,8 @@ import Timeline from "./pages/Timeline/Timeline";
 
 export default function App() {
   const dispatch = useDispatch();
-  const user = false;
+  const user = true;
+
 
   useEffect(() => {
     dispatch(getPosts());

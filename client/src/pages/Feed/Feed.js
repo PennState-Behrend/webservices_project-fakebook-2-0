@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./Feed.css";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Post from "./Post";
+import { useDispatch } from "react-redux";
 import PostForm from "../../components/Form/Form";
 import { styled } from "@mui/material/styles";
+import { getPosts } from "../../actions/posts";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -16,15 +18,20 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Feed() {
+  const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
-  console.log(posts);
+  const [currentId, setCurrentId] = useState(null);
+  // console.log(posts);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
 
   return (
     <Box sx={{ flexGrow: 1, paddingTop: "-50vh" }}>
       <Grid container spacing={2}>
         <Grid item xs={3}></Grid>
         <Grid item xs={6}>
-          <PostForm />
+          <PostForm setCurrentId={setCurrentId} currentId={currentId} />
         </Grid>
       </Grid>
       <Grid container spacing={2}>
@@ -38,9 +45,11 @@ export default function Feed() {
               timestamp={post.createdAt}
               username={post.creator}
               likeCount={post.likeCount}
+              id={post._id}
               commentCount={post.commentCount}
               image={post.selectedFile}
               tags={post.tags}
+              setCurrentId={setCurrentId}
             />
           ))}
         </Grid>

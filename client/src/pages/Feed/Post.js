@@ -23,12 +23,14 @@ import {
 
 const Post = ({
   image,
+  id,
   username,
   timestamp,
   message,
   commentCount,
   likeCount,
   tags,
+  setCurrentId,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -62,7 +64,14 @@ const Post = ({
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Edit</MenuItem>
+            <MenuItem
+              onClick={() => {
+                setCurrentId(id);
+                handleClose();
+              }}
+            >
+              Edit
+            </MenuItem>
             <MenuItem onClick={handleClose}>Delete</MenuItem>
           </Menu>
         </div>

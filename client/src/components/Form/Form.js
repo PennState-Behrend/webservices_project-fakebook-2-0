@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FileBase from "react-file-base64";
 
 import useStyles from "./styles";
-import { createPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -14,8 +14,16 @@ const Form = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
 
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
+
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
 
   const clear = () => {
     setPostData({
@@ -24,14 +32,18 @@ const Form = ({ currentId, setCurrentId }) => {
       tags: "",
       selectedFile: "",
     });
+    setCurrentId(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
+    if (currentId) {
+      console.log(postData);
+      dispatch(updatePost(currentId, postData));
+    } else {
       dispatch(createPost(postData));
-      clear();
+    }
+    clear();
   };
 
   return (
@@ -90,7 +102,7 @@ const Form = ({ currentId, setCurrentId }) => {
           type="submit"
           fullWidth
         >
-          Submit
+          {currentId ? "Finish Editing" : "Post"}
         </Button>
         <Button
           variant="contained"
