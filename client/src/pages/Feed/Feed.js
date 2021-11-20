@@ -53,8 +53,9 @@ export default function Feed() {
               // profilePic={post.data.profilePic}
               message={post.body}
               timestamp={post.createdAt}
-              username={post.creator}
-              likeCount={post.likeCount}
+              creator={post.creator}
+              username={post.name}
+              likeCount={post.likes.length}
               id={post._id}
               commentCount={post.commentCount}
               image={post.selectedFile}

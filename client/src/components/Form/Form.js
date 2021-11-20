@@ -8,7 +8,6 @@ import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({ currentId, setCurrentId, getMorePost }) => {
   const [postData, setPostData] = useState({
-    creator: "",
     body: "",
     tags: "",
     selectedFile: "",
@@ -20,6 +19,7 @@ const Form = ({ currentId, setCurrentId, getMorePost }) => {
 
   const dispatch = useDispatch();
   const classes = useStyles();
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   useEffect(() => {
     if (post) setPostData(post);
@@ -27,7 +27,6 @@ const Form = ({ currentId, setCurrentId, getMorePost }) => {
 
   const clear = () => {
     setPostData({
-      creator: "",
       body: "",
       tags: "",
       selectedFile: "",
@@ -38,14 +37,20 @@ const Form = ({ currentId, setCurrentId, getMorePost }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (currentId) {
-      console.log(postData);
-      dispatch(updatePost(currentId, postData));
+      dispatch(
+        updatePost(currentId, { ...postData, name: user?.result?.name })
+      );
     } else {
-      dispatch(createPost(postData));
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      console.log(user?.result?.name);
     }
     clear();
     getMorePost();
   };
+
+  if (!user?.result?.name) {
+    return <Paper className={classes.paper}>Can not create post!</Paper>;
+  }
 
   return (
     <Paper className={classes.paper}>
@@ -55,7 +60,7 @@ const Form = ({ currentId, setCurrentId, getMorePost }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <TextField
+        {/* <TextField
           name="creator"
           variant="outlined"
           label="Creator"
@@ -64,7 +69,7 @@ const Form = ({ currentId, setCurrentId, getMorePost }) => {
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
           }
-        />
+        /> */}
 
         <TextField
           name="body"

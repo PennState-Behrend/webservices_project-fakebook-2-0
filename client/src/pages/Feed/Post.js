@@ -32,6 +32,7 @@ const Post = ({
   message,
   commentCount,
   likeCount,
+  creator,
   tags,
   setCurrentId,
 }) => {
@@ -46,53 +47,64 @@ const Post = ({
 
   const dispatch = useDispatch();
 
+  const user = JSON.parse(localStorage.getItem("profile"));
+
+  console.log(user?.result?._id);
+  console.log(creator);
+
   return (
     <div className="post">
       <div className="postTop">
         {/* <Avatar src={profilePic} className="postAvatar" /> */}
-        <div>
-          <Button
-            id="basic-button"
-            aria-controls="basic-menu"
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-            color="inherit"
-          >
-            <MoreVertIcon color="error" />
-          </Button>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            <MenuItem
-              onClick={() => {
-                setCurrentId(id);
-                handleClose();
+
+        {user?.result?._id === creator ? (
+          <div>
+            <Button
+              id="basic-button"
+              aria-controls="basic-menu"
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+              color="inherit"
+            >
+              <MoreVertIcon color="error" />
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
               }}
             >
-              Edit
-            </MenuItem>
-            <MenuItem
-              onClick={() => {
-                dispatch(deletePost(id));
-                handleClose();
-              }}
-            >
-              Delete
-            </MenuItem>
-          </Menu>
-        </div>
+              <MenuItem
+                onClick={() => {
+                  setCurrentId(id);
+                  handleClose();
+                }}
+              >
+                Edit
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  dispatch(deletePost(id));
+                  handleClose();
+                }}
+              >
+                Delete
+              </MenuItem>
+            </Menu>
+          </div>
+        ) : (
+          <></>
+        )}
+
         <Avatar
           sx={{ bgcolor: "#FFFFFF" }}
           style={{ marginRight: 5, backgroundColor: "blueviolet" }}
         >
-          {"YUBA".toUpperCase()}
+          {username[0].toUpperCase()}
         </Avatar>
 
         <div className="postTopInfo">
