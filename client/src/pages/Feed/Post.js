@@ -9,8 +9,11 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Moment from "react-moment";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { blue } from "@mui/material/colors";
 
 import { deletePost, likePost } from "../../actions/posts";
 
@@ -33,6 +36,7 @@ const Post = ({
   commentCount,
   likeCount,
   creator,
+  likes,
   tags,
   setCurrentId,
 }) => {
@@ -49,8 +53,48 @@ const Post = ({
 
   const user = JSON.parse(localStorage.getItem("profile"));
 
-  console.log(user?.result?._id);
-  console.log(creator);
+  const Like = () => {
+    if (likes.length > 0)
+      return likes.find((like) => like === user?.result?._id) ? (
+        <div
+          className="postOption"
+          onClick={() => {
+            dispatch(likePost(id));
+          }}
+        >
+          <ThumbUpAltIcon fontSize="large" color="primary" />
+          <p>
+            &nbsp;
+            {likes.length > 2
+              ? `You and ${likes.length - 1} others`
+              : `${likes.length} like${likes.length > 1 ? "s" : ""}`}
+          </p>
+        </div>
+      ) : (
+        <div
+          className="postOption"
+          onClick={() => {
+            dispatch(likePost(id));
+          }}
+        >
+          <ThumbUpAltOutlined fontSize="large" color="primary" />
+          <p>
+            &nbsp;{likeCount} {likes.length === 1 ? "Like" : "Likes"}
+          </p>
+        </div>
+      );
+    return (
+      <div
+        className="postOption"
+        onClick={() => {
+          dispatch(likePost(id));
+        }}
+      >
+        <ThumbUpAltOutlined fontSize="large" color="primary" />
+        <p>&nbsp;Like</p>
+      </div>
+    );
+  };
 
   return (
     <div className="post">
@@ -108,7 +152,7 @@ const Post = ({
         </Avatar>
 
         <div className="postTopInfo">
-          <Link to="/timeline/thisisatestuserid">
+          <Link to={`/timeline/${id}`}>
             <h2>{username}</h2>
           </Link>
           <p>
@@ -140,18 +184,8 @@ const Post = ({
           style={{ objectFit: "contain" }}
         />
       </div>
-
       <div className="postOptions">
-        <div
-          className="postOption"
-          onClick={() => {
-            dispatch(likePost(id));
-          }}
-        >
-          <ThumbUp />
-          <p>{likeCount} Like</p>
-        </div>
-
+        <Like />
         <div className="postOption">
           <ChatBubbleOutline />
           <p>{commentCount} Comment</p>

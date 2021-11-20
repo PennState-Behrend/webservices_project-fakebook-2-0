@@ -56,6 +56,7 @@ export default function Feed() {
               creator={post.creator}
               username={post.name}
               likeCount={post.likes.length}
+              likes={post.likes}
               id={post._id}
               commentCount={post.commentCount}
               image={post.selectedFile}
