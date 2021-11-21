@@ -7,6 +7,8 @@ import Form from "./components/Form/Form";
 import NavBar from "./components/Navbar/Navbar";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import Timeline from "./pages/Timeline/Timeline";
+
+
 import decode from "jwt-decode";
 import PostDetails from "./pages/PostDetails/PostDetails";
 

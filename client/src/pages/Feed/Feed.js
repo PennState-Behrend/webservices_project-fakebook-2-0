@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import PostForm from "../../components/Form/Form";
 import { styled } from "@mui/material/styles";
 import { getPosts } from "../../actions/posts";
+import FloatingActionButton from "./FloatingButton";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -47,44 +48,62 @@ export default function Feed() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1, paddingTop: "-50vh" }}>
-      <Grid container spacing={2}>
-        <Grid item xs={3}></Grid>
-        <Grid item xs={6}>
-          <PostForm
-            getMorePost={getMorePost}
-            setCurrentId={setCurrentId}
-            currentId={currentId}
-          />
-        </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={3}></Grid>
-        <Grid item xs={6}>
-          {posts.map((post) => (
-            <Post
-              key={post._id}
-              // profilePic={post.data.profilePic}
-              message={post.body}
-              timestamp={post.createdAt}
-              creator={post.creator}
-              username={post.name}
-              likeCount={post.likes.length}
-              likes={post.likes}
-              id={post._id}
-              commentCount={post.comments.length}
-              image={post.selectedFile}
-              tags={post.tags}
+    <div>
+      <Box sx={{ flexGrow: 1, paddingTop: "-50vh" }}>
+        <Grid container spacing={2}>
+          <Grid item xs={3}></Grid>
+          <Grid item xs={6}>
+            <PostForm
+              getMorePost={getMorePost}
               setCurrentId={setCurrentId}
+              currentId={currentId}
             />
-          ))}
+          </Grid>
         </Grid>
-        <Grid item xs={2}></Grid>
-        {/* <Grid item xs={8}>
+        <Grid container spacing={2}>
+          <Grid item xs={3}></Grid>
+          <Grid item xs={6}>
+            {posts.map((post) => (
+              <Post
+                key={post._id}
+                // profilePic={post.data.profilePic}
+                message={post.body}
+                timestamp={post.createdAt}
+                creator={post.creator}
+                username={post.name}
+                likeCount={post.likes.length}
+                likes={post.likes}
+                id={post._id}
+                commentCount={post.comments.length}
+                image={post.selectedFile}
+                tags={post.tags}
+                setCurrentId={setCurrentId}
+              />
+            ))}
+            <div
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              style={{
+                postion: "-webkit-sticky",
+                position: "sticky",
+                marginLeft: "120em",
+                bottom: 30,
+              }}
+            >
+              <FloatingActionButton />
+            </div>
+          </Grid>
+
+          <Grid item xs={2}></Grid>
+          {/* <Grid item xs={8}>
           <Item>xs=8</Item>
         </Grid> */}
-      </Grid>
-    </Box>
+        </Grid>
+      </Box>{" "}
+      {/* <div styles={{displ, width:"100%" marginTop: "100%", maeginLeft: "80%" }}>
+       
+      </div> */}
+    </div>
+
     // <div className="feed" style={{ paddingTop: "10vh" }}>
     //   {posts.map((post) => (
     //     <Post
