@@ -165,7 +165,7 @@ const Post = ({
         </Avatar>
 
         <div className="postTopInfo">
-          <Link to={`/timeline/${id}`}>
+          <Link to={`/timeline/${creator}`}>
             <h2>{username}</h2>
           </Link>
           <p>

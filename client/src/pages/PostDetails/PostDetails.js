@@ -42,7 +42,15 @@ export default function PostDetails() {
   }
 
   return (
-    <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
+    <Paper
+      style={{
+        padding: "20px",
+        borderRadius: "15px",
+        marginLeft: "100px",
+        marginRight: "70px",
+      }}
+      elevation={6}
+    >
       <div className={classes.card}>
         <div className={classes.section}>
           <Typography variant="h3" component="h2">

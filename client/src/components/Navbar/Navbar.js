@@ -21,7 +21,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
-
+import HomeIcon from "@mui/icons-material/Home";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 const drawerWidth = 220;
 
 const styles = (theme) => ({
@@ -125,6 +126,9 @@ class MiniDrawer extends React.Component {
     const { classes, theme } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
+
+    const user = JSON.parse(localStorage.getItem("profile"));
+
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -136,7 +140,7 @@ class MiniDrawer extends React.Component {
           })}
         >
           <Toolbar disableGutters={true}>
-            {/* <IconButton
+            <IconButton
               color="inherit"
               aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
@@ -149,7 +153,7 @@ class MiniDrawer extends React.Component {
                     : classes.menuButtonIconClosed,
                 }}
               />
-            </IconButton> */}
+            </IconButton>
             <Link
               to="/"
               style={{ textDecoration: "none" }}
@@ -196,7 +200,7 @@ class MiniDrawer extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
-        {/* <Drawer
+        <Drawer
           variant="permanent"
           className={classNames(classes.drawer, {
             [classes.drawerOpen]: this.state.open,
@@ -212,16 +216,24 @@ class MiniDrawer extends React.Component {
         >
           <div className={classes.toolbar} />
           <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-              <ListItem button key={text}>
+            <Link to="/">
+              <ListItem button>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <HomeIcon />
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={"HOME"} />
               </ListItem>
-            ))}
+            </Link>
+            <Link to={`/timeline/${user.result._id}`}>
+              <ListItem button>
+                <ListItemIcon>
+                  <AccountBoxIcon />
+                </ListItemIcon>
+                <ListItemText primary={"My Profile".toUpperCase()} />
+              </ListItem>
+            </Link>
           </List>
-        </Drawer> */}
+        </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
         </main>
