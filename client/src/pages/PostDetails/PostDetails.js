@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 import { useParams, useHistory } from "react-router-dom";
 
@@ -32,7 +33,11 @@ export default function PostDetails() {
   }, [id]);
 
   if (!post) {
-    return <h1>Loading...</h1>;
+    return (
+      <Paper elevation={6} className={classes.loadingPaper}>
+        <CircularProgress size="7em" />
+      </Paper>
+    );
   }
 
   return (
@@ -40,7 +45,7 @@ export default function PostDetails() {
       <div className={classes.card}>
         <div className={classes.section}>
           <Typography variant="h3" component="h2">
-            "TITLE"
+            {post.body}
           </Typography>
           <Typography
             gutterBottom
@@ -53,30 +58,31 @@ export default function PostDetails() {
           <Typography gutterBottom variant="body1" component="p">
             {post.message}
           </Typography>
-          <Typography variant="h6">Created by: {post.name}</Typography>
+
+          <Typography variant="h6">
+            Created by:{" "}
+            <Link to={`/timeline/${post.creator}`}>{post.name}</Link>
+          </Typography>
+
           <Typography variant="body1">
             {moment(post.createdAt).fromNow()}
           </Typography>
-          <Divider style={{ margin: "20px 0" }} />
-          <Typography variant="body1">
-            <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
+
           <Divider style={{ margin: "20px 0" }} />
           <Typography variant="body1">
             <strong>Comments - coming soon!</strong>
           </Typography>
           <Divider style={{ margin: "20px 0" }} />
         </div>
-        <div className={classes.imageSection}>
-          <img
-            className={classes.media}
-            src={
-              post.selectedFile ||
-              "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
-            }
-            alt={post.title}
-          />
-        </div>
+        {post.selectedFile ? (
+          <div className={classes.imageSection}>
+            <img
+              className={classes.media}
+              src={post.selectedFile}
+              alt={post.title}
+            />
+          </div>
+        ) : null}
       </div>
     </Paper>
   );
