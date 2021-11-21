@@ -72,7 +72,7 @@ export default function Feed() {
               likeCount={post.likes.length}
               likes={post.likes}
               id={post._id}
-              commentCount={post.commentCount}
+              commentCount={post.comments.length}
               image={post.selectedFile}
               tags={post.tags}
               setCurrentId={setCurrentId}

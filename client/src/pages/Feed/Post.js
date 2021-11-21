@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 
 import { ButtonBase } from "@mui/material";
 
+import CommentPopup from "./CommentPopup";
+
 import Moment from "react-moment";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
@@ -209,8 +211,8 @@ const Post = ({
       <div className="postOptions">
         <Like />
         <div className="postOption">
-          <ChatBubbleOutline />
-          <p>{commentCount} Comment</p>
+          <CommentPopup />
+          <p>&nbsp;{commentCount}</p>
         </div>
       </div>
     </div>
