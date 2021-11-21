@@ -8,7 +8,7 @@ import NavBar from "./components/Navbar/Navbar";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import Timeline from "./pages/Timeline/Timeline";
 import decode from "jwt-decode";
-import TokenChecker from "./components/Navbar/TokenChecker";
+import PostDetails from "./pages/PostDetails/PostDetails";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -52,6 +52,7 @@ export default function App() {
           <Switch>
             <Route path="/" exact component={Feed} />
             <Route path="/timeline/:id" component={Timeline} />
+            <Route path="/post/:id" component={PostDetails} />
           </Switch>
         </>
       ) : (

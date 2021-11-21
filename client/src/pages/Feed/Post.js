@@ -8,6 +8,8 @@ import TagChip from "./TagChips.js";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { ButtonBase } from "@mui/material";
+
 import Moment from "react-moment";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
@@ -16,6 +18,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { blue } from "@mui/material/colors";
 
 import { deletePost, likePost } from "../../actions/posts";
+
+import { useHistory } from "react-router-dom";
 
 // Icons
 import { Avatar } from "@material-ui/core";
@@ -52,6 +56,12 @@ const Post = ({
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("profile"));
+
+  const history = useHistory();
+
+  const openPost = () => {
+    history.push(`/post/${id}`);
+  };
 
   const Like = () => {
     if (likes.length > 0)
@@ -126,7 +136,7 @@ const Post = ({
                 onClick={() => {
                   setCurrentId(id);
                   handleClose();
-                  window.scrollTo({top: 0, behavior: 'smooth'});
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
                 Edit
@@ -165,26 +175,37 @@ const Post = ({
         </div>
       </div>
 
-      <div className="postBottom">
-        <p
-          style={{
-            marginTop: -20,
-            fontSize: 20,
-          }}
-        >
-          {message}
-        </p>
-      </div>
+      <ButtonBase
+        onClick={openPost}
+        disableTouchRipple={true}
+        disableFocusRipple={true}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+        }}
+      >
+        <div className="postBottom">
+          <p
+            style={{
+              marginTop: -20,
+              fontSize: 20,
+            }}
+          >
+            {message}
+          </p>
+        </div>
 
-      <div className="postImage">
-        <img
-          src={image}
-          alt=""
-          width="100%"
-          maxHeight="auto"
-          style={{ objectFit: "contain" }}
-        />
-      </div>
+        <div className="postImage">
+          <img
+            src={image}
+            alt=""
+            width="100%"
+            maxHeight="auto"
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+      </ButtonBase>
       <div className="postOptions">
         <Like />
         <div className="postOption">

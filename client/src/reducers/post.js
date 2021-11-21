@@ -1,3 +1,4 @@
+const state = {};
 export default (posts = [], action) => {
   switch (action.type) {
     case "DELETE":
@@ -17,6 +18,8 @@ export default (posts = [], action) => {
         post._id === action.payload._id ? action.payload : post
       );
 
+    case "FETCH_POST":
+      return { posts: [...posts], post: action.payload.post, isLoading: false };
     default:
       return posts;
   }

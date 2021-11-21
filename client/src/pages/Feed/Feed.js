@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Post from "./Post";
+import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PostForm from "../../components/Form/Form";
 import { styled } from "@mui/material/styles";
@@ -19,7 +20,11 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Feed() {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
+  let posts = useSelector((state) => {
+    console.log(state.posts);
+    return state.posts.posts ? state.posts.posts : state.posts;
+  });
+  const location = useLocation();
 
   const [currentId, setCurrentId] = useState(null);
   // console.log(posts);
@@ -30,7 +35,16 @@ export default function Feed() {
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [currentId, dispatch]);
+    console.log(posts);
+  }, [currentId, location, dispatch]);
+
+  if (!posts) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (posts.posts) {
+    posts = posts.posts;
+  }
 
   return (
     <Box sx={{ flexGrow: 1, paddingTop: "-50vh" }}>

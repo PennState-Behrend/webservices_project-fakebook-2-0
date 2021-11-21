@@ -11,6 +11,17 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
+export const getPost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchPost(id);
+    console.log(data);
+
+    dispatch({ type: "FETCH_POST", payload: { post: data }, isLoading: false });
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 export const createPost = (post) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
