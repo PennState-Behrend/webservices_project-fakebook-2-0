@@ -1,4 +1,4 @@
-const state = {};
+const state = { isLoading: true, posts: [] };
 export default (posts = [], action) => {
   switch (action.type) {
     case "DELETE":
@@ -17,6 +17,20 @@ export default (posts = [], action) => {
       return posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );
+    case "COMMENT":
+      state.isLoading = false;
+      state.posts = posts;
+      console.log(posts);
+
+      return {
+        ...posts,
+        posts: posts.posts.map((post) => {
+          if (post._id == +action.payload._id) {
+            return action.payload;
+          }
+          return post;
+        }),
+      };
 
     case "FETCH_POST":
       return { posts: [...posts], post: action.payload.post, isLoading: false };
