@@ -72,3 +72,32 @@ export const commentPost = (value, id) => async (dispatch) => {
   }
 };
 
+export const getUserPosts = (id) => async (dispatch) => {
+  try {
+    const infos = {
+      posts: null,
+      likes: null,
+      comments: null,
+    };
+    const { data } = await api.getAllUserPosts(id);
+
+    let likeCount = 0;
+    let commentCount = 0;
+    infos.posts = data.post.length;
+
+    for (let i = 0; i < infos.posts; i++) {
+      likeCount += data.post[i].likes.length;
+      commentCount += data.post[i].comments.length;
+    }
+    infos.comments = commentCount;
+    infos.likes = likeCount;
+
+    data.user.info = { ...infos };
+
+    // dispatch({ type: "COMMENT", payload: data });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+

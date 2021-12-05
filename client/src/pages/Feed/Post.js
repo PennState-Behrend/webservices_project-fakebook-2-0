@@ -44,6 +44,7 @@ const Post = ({
   creator,
   likes,
   tags,
+  hide,
   setCurrentId,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -113,7 +114,7 @@ const Post = ({
       <div className="postTop">
         {/* <Avatar src={profilePic} className="postAvatar" /> */}
 
-        {user?.result?._id === creator ? (
+        {user?.result?._id === creator && setCurrentId !== undefined ? (
           <div>
             <Button
               id="basic-button"
@@ -184,7 +185,7 @@ const Post = ({
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start",
+          alignItems: "center",
         }}
       >
         <div className="postBottom">
@@ -192,13 +193,11 @@ const Post = ({
             style={{
               marginTop: -20,
               fontSize: 20,
+              textAlign: "start",
             }}
           >
             {message}
           </p>
-        </div>
-
-        <div className="postImage">
           <img
             src={image}
             alt=""
@@ -207,14 +206,27 @@ const Post = ({
             style={{ objectFit: "contain" }}
           />
         </div>
+
+        <div
+          className="postImage"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        ></div>
       </ButtonBase>
-      <div className="postOptions">
-        <Like />
-        <div className="postOption">
-          <CommentPopup />
-          <p>&nbsp;{commentCount}</p>
+      {hide == undefined ? (
+        <div className="postOptions">
+          <Like />
+          <div className="postOption">
+            <CommentPopup />
+            <p>&nbsp;{commentCount}</p>
+          </div>
         </div>
-      </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

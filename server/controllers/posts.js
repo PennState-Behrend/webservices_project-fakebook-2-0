@@ -1,4 +1,6 @@
 import PostMessage from "../models/postMessage.js";
+import UserModal from "../models/user.js";
+
 import mongoose from "mongoose";
 
 export const getPosts = async (req, res) => {
@@ -21,7 +23,6 @@ export const getPost = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-
 
 export const createPost = async (req, res) => {
   const post = req.body;
@@ -110,9 +111,10 @@ export const commentPost = async (req, res) => {
 export const getUserPost = async (req, res) => {
   const { id } = req.params;
   try {
-    const post = await PostMessage.find({ creator: id });
+    const post = await PostMessage.find({ creator: id }).sort({ _id: -1 });
+    const user = await UserModal.findById(id);
 
-    res.status(200).json(post);
+    res.status(200).json({ post, user });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
