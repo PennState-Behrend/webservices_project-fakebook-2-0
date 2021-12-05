@@ -50,15 +50,12 @@ export const updatePost = async (req, res) => {
 
   let updatedPost = { creator, body, tags, selectedFile, _id: id };
 
-  console.log(updatedPost);
-
   updatedPost = await PostMessage.findByIdAndUpdate(id, updatedPost, {
     new: true,
   });
 
   res.json(updatedPost);
 };
-
 
 export const deletePost = async (req, res) => {
   const { id } = req.params;
@@ -110,4 +107,13 @@ export const commentPost = async (req, res) => {
   res.json(updatedPost);
 };
 
+export const getUserPost = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const post = await PostMessage.find({ creator: id });
 
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
