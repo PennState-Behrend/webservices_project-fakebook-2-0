@@ -85,7 +85,7 @@ export default function Feed() {
               style={{
                 postion: "-webkit-sticky",
                 position: "sticky",
-                marginLeft: "120em",
+                marginLeft: "110em",
                 bottom: 30,
               }}
             >

@@ -220,7 +220,7 @@ const Post = ({
         <div className="postOptions">
           <Like />
           <div className="postOption">
-            <CommentPopup />
+            <CommentPopup id={id} />
             <p>&nbsp;{commentCount}</p>
           </div>
         </div>
